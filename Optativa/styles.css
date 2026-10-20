@@ -1,0 +1,266 @@
+/* ==========================================================
+   Clasificador de imágenes - Estilos
+   ========================================================== */
+
+/* ---------- Variables de color ---------- */
+
+:root {
+  --ink: #1b2430;
+  --paper: #eaf1ef;
+  --card: #fbfdfc;
+  --accent: #0f766e;
+  --accent-dark: #0b524d;
+  --signal: #e8a33d;
+  --muted: #5b6b73;
+  --line: #cfdcd8;
+  --bad: #b4462f;
+}
+
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* ---------- Cabecera ---------- */
+header {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 0.5rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: -0.01em;
+}
+
+header p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+/* ---------- Estructura de la página ---------- */
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 1rem auto 2rem;
+  padding: 0 1rem;
+}
+
+section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+/* ---------- Visor de imagen / cámara ---------- */
+.viewfinder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  overflow: hidden;
+  background: var(--ink);
+  border-radius: 8px;
+}
+
+.viewfinder canvas,
+.viewfinder img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.viewfinder p {
+  margin: 0;
+  padding: 1rem;
+  color: #9fb3ad;
+  text-align: center;
+}
+
+/* ---------- Botones ---------- */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+button,
+.file-btn {
+  font: inherit;
+  padding: 0.55rem 1rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover,
+.file-btn:hover {
+  background: var(--accent-dark);
+}
+
+button:disabled {
+  background: #aab9b5;
+  cursor: not-allowed;
+}
+
+/* Botones secundarios (Parar, Subir imagen, Borrar histórico) */
+button.secondary,
+.file-btn {
+  background: transparent;
+  color: var(--accent-dark);
+  border: 1.5px solid var(--accent);
+}
+
+button.secondary:hover,
+.file-btn:hover {
+  background: #dcebe8;
+}
+
+/* Botón de subir imagen: el input real queda oculto */
+.file-btn {
+  position: relative;
+  display: inline-block;
+}
+
+.file-btn input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* Foco visible para navegar con teclado */
+button:focus-visible,
+.file-btn:focus-within,
+input:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* ---------- Resultado ---------- */
+#message {
+  min-height: 3.6rem;
+  padding: 0.75rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background: #e2ebe8;
+  border-radius: 8px;
+}
+
+#message.ok {
+  background: #d3efe6;
+  color: var(--accent-dark);
+}
+
+#message.no {
+  background: #f7e3d9;
+  color: var(--bad);
+}
+
+/* Barras de probabilidad */
+.bar {
+  margin: 0.6rem 0;
+}
+
+.bar div.label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.track {
+  height: 10px;
+  overflow: hidden;
+  background: #dbe5e2;
+  border-radius: 5px;
+}
+
+.fill {
+  width: 0;
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.15s;
+}
+
+/* ---------- Valor mínimo (deslizador) ---------- */
+.slider {
+  margin-top: 1rem;
+}
+
+.slider label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+input[type=range] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+/* ---------- Histórico ---------- */
+ul {
+  max-height: 260px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+li small {
+  color: var(--muted);
+}
+
+.empty {
+  color: var(--muted);
+}
+
+/* ---------- Estado ---------- */
+#status {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- Responsive (móviles y pantallas estrechas) ---------- */
+@media (max-width: 700px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}

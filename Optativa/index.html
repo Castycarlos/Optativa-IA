@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clasificador de imágenes</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Clasificador de imágenes</h1>
+  <p>Modelo entrenado con Teachable Machine. Usa la cámara o sube una foto.</p>
+</header>
+
+<main>
+  <section>
+    <h2>Imagen</h2>
+    <div class="viewfinder" id="cam"><p>Pulsa Iniciar para activar la cámara</p></div>
+    <div class="row">
+      <button id="btnStart">Iniciar</button>
+      <button id="btnStop" class="secondary" disabled>Parar</button>
+      <label class="file-btn">Subir imagen<input type="file" id="file" accept="image/*"></label>
+    </div>
+    <div id="status" role="status"></div>
+  </section>
+
+  <section>
+    <h2>Resultado</h2>
+    <div id="message" aria-live="polite">Todavía no hay ninguna predicción.</div>
+    <div id="bars"></div>
+    <div class="slider">
+      <label for="threshold">Valor mínimo de coincidencia: <strong id="thValue">80</strong>%</label>
+      <input type="range" id="threshold" min="50" max="100" value="80">
+    </div>
+  </section>
+
+  <section class="wide">
+    <h2>Histórico de resultados</h2>
+    <ul id="history"></ul>
+    <div class="row"><button id="btnClear" class="secondary">Borrar histórico</button></div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.5/dist/teachablemachine-image.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
